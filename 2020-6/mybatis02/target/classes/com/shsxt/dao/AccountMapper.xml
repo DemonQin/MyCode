@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shsxt.dao.AccountMapper">
+    <insert id="saveAccount" parameterType="Account" keyProperty="id">
+        insert into account(aname,type,money,user_id ,remark,create_time ,update_time) values(#{aname},#{type},#{money},#{userId},#{remark},#{createTime},#{updateTime});
+    </insert>
+    <delete id="deleteAll">
+        delete from account;
+    </delete>
+
+    <select id="queryAccountByid" resultType="com.shsxt.vo.Account">
+        select aname,type ,money
+        from account where id= #{id};
+    </select>
+</mapper>

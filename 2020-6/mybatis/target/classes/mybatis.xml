@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mybatis 框架头文件声明，类似 spring 环境，均需要加入头文件 -->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 添加数据库连接相关配置信息 -->
+<configuration>
+    <properties resource="jdbc.properties"></properties>
+    <typeAliases>
+        <package name="com.shsxt.vo"/>
+    </typeAliases>
+    <environments default="test">
+        <environment id="development">
+            <!-- 加入事务控制 -->
+            <transactionManager type="jdbc"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="pooled">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://127.0.0.1:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <!-- 加入事务控制 -->
+            <transactionManager type="jdbc"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="pooled">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url"
+                          value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>    <!-- mapper 配置文件指定 文件数量可配置多个-->
+    <mappers>
+        <mapper resource="com/shsxt/mapper/UserMapper.xml"/>
+    </mappers>
+
+</configuration>

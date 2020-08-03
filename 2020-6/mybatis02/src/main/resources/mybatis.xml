@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="jdbc.properties"></properties>
+
+    <typeAliases>
+
+        <!-- <typeAlias type="com.shsxt.vo.User" alias="User"></typeAlias>
+         <typeAlias type="com.shsxt.query.UserQuery" alias="UserQuery"></typeAlias>-->
+        <!--
+           给指定包下javaBean指定别名
+        -->
+        <package name="com.shsxt.vo"/>
+        <package name="com.shsxt.query"/>
+    </typeAliases>
+
+
+    <!--
+       声明数据源配置信息
+    -->
+    <environments default="development">
+
+
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.test.driver}"/>
+                <property name="url" value="${jdbc.test.url}"/>
+                <property name="username" value="${jdbc.test.user}"/>
+                <property name="password" value="${jdbc.test.password}"/>
+            </dataSource>
+        </environment>
+
+
+    </environments>
+
+
+    <mappers>
+        <!--
+            配置加载的映射文件  resource 值:从包名开始
+        -->
+<!--        <mapper resource="com/shsxt/dao/AccountMapper.xml"/>-->
+
+
+        <!--
+           接口的代理实现crud  零配置
+        -->
+        <!--<mapper class="com.shsxt.dao.IAccountDao"></mapper>-->
+        <package name="com.shsxt.dao"/>
+    </mappers>
+</configuration>
